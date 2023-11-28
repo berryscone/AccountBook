@@ -25,4 +25,8 @@ class HCardParser:
         # Date 열을 date 포맷으로 변경
         data["Date"] = data["Date"].apply(lambda x: datetime.strptime(x, "%Y년 %m월 %d일").date())
 
-        return data
+        data["Price"] = -data["Price"].astype(int)
+        data["Principal"] = -data["Principal"].astype(int)
+        data["Pay"] = "현대"
+
+        return data.reset_index(drop=True)
