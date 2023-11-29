@@ -1,5 +1,6 @@
 from HCardParser import HCardParser
 from SCardParser import SCardParser
+from KCardParser import KCardParser
 from KBankParser import KBankParser
 import pandas as pd
 
@@ -16,6 +17,10 @@ data_list.append(scard_data)
 kbank_parser = KBankParser("카카오뱅크_거래내역_N5838885598_2023100716381561.xlsx")
 kbank_data = kbank_parser.parse()
 data_list.append(kbank_data)
+
+kcard_parser = KCardParser("202311_usage.xlsx")
+kcard_data = kcard_parser.parse()
+data_list.append(kcard_data)
 
 data = pd.concat(data_list, ignore_index=True)
 data = data.sort_values(by="Date", ascending=True, ignore_index=True)
