@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 
 
-class SCardParser:
+class SinhanCardParser:
     cols_to_drop = ['이용 카드', '할 부 기 간', '회 차', '수수료 (이자)', '적용 구분', '결제 후 잔액', '포인트 적립율 (마이 신한 포인트)']
     col_map = {"이용 일자": "Date", "이용 가맹점": "Place", "이용 금액": "Price", "원금": "Principal"}
 

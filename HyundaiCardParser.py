@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 
 
-class HCardParser:
+class HyundaiCardParser:
     cols_to_drop = ["이용카드", "할부/회차", "적립/할인율(%)", "예상적립/할인", "결제후잔액", "수수료(이자)"]
     col_map = {"이용일": "Date", "이용가맹점": "Place", "이용금액": "Price", "결제원금": "Principal"}
 

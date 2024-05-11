@@ -3,7 +3,7 @@ import xlrd
 from datetime import datetime
 
 
-class KBankParser:
+class KakaoBankParser:
     cols_to_drop = ['구분', '거래 후 잔액', '거래구분', '메모']
     col_map = {"거래일시": "Date", "내용": "Place", "거래금액": "Price"}
 

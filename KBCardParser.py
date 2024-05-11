@@ -4,7 +4,7 @@ import unicodedata
 from datetime import datetime
 
 
-class KCardParser:
+class KBCardParser:
     cols_to_drop = ["이용카드", "구분", np.nan, "할부개월", "회차"]
     col_map = {"이용일자": "Date", "이용하신 가맹점": "Place", "이용금액": "Price", "원금": "Principal"}
 
