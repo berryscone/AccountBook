@@ -1,4 +1,6 @@
+import io
 import pandas as pd
+import msoffcrypto
 import xlrd
 from datetime import datetime
 
@@ -11,7 +13,16 @@ class KakaoBankParser:
         self.file_name = file_name
 
     def parse(self):
-        data = pd.read_excel(self.file_name)
+        file = open(self.file_name, 'rb')
+        encrypted = msoffcrypto.OfficeFile(file)
+        encrypted.load_key(password='880701')
+
+        decrypted = io.BytesIO()
+        encrypted.decrypt(decrypted)
+        decrypted.seek(0)
+        file.close()
+
+        data = pd.read_excel(decrypted)
 
         # 위와 오른쪽에 불필요한 부분 제거
         data = data.iloc[9:, 1:]
