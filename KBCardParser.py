@@ -29,8 +29,11 @@ class KBCardParser:
         # 모든 카드사 데이터의 열 이름을 통일
         data = data.rename(columns=self.col_map)
 
+        # 첫 번째 열에서 YYYY.MM.DD 포맷이 아닌 행은 drop
+        # data = data[data.iloc[:, 0].str.match(r'^\d{2}\.\d{2}\.\d{2}$')]
+
         # unicode 를 normalize 하고 할인정보가 들어간 행을 제거
-        data = data.map(lambda x: unicodedata.normalize("NFKD", x))
+        # data = data.map(lambda x: unicodedata.normalize("NFKD", x))
         data = data.replace(r'^\s+$', np.nan, regex=True)
         data = data.dropna()
 
@@ -38,8 +41,10 @@ class KBCardParser:
         data["Date"] = data["Date"].apply(lambda x: datetime.strptime(x, "%y.%m.%d").date())
 
         # Price 와 Principal 열의 부호를 변경
-        data["Price"] = -pd.to_numeric(data["Price"].str.replace(',', ''))
-        data["Principal"] = -pd.to_numeric(data["Principal"].str.replace(',', ''))
+        data["Price"] = -data["Price"]
+        data["Principal"] = -data["Principal"]
+        # data["Price"] = -pd.to_numeric(data["Price"].str.replace(',', ''))
+        # data["Principal"] = -pd.to_numeric(data["Principal"].str.replace(',', ''))
 
         data["Pay"] = "국민"
 
