@@ -4,13 +4,18 @@ from KBCardParser import KBCardParser
 from KakakoBankParser import KakaoBankParser
 from HanaCardParser import HanaCardParser
 from LotteCardParser import LotteCardParser
+from SamsungCardParser import SamsungCardParser
 import pandas as pd
 
 data_list = []
 
-# hncard_parser = HanaCardParser("하나.xls")
-# hncard_data = hncard_parser.parse()
-# data_list.append(hncard_data)
+sscard_parser = SamsungCardParser("삼성.xlsx")
+sscard_data = sscard_parser.parse()
+data_list.append(sscard_data)
+
+hncard_parser = HanaCardParser("하나.xls")
+hncard_data = hncard_parser.parse()
+data_list.append(hncard_data)
 
 # ltcard_parser = LotteCardParser("롯데.xls")
 # ltcard_data = ltcard_parser.parse()
